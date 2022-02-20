@@ -1,0 +1,125 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#Html code:
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<form action="">
+    <h5><span>Login </span>Your Account</h5>
+    <label>
+        <input type="text" placeholder="Username">
+    </label>
+    <label>
+        <input type="email" placeholder="Your email">
+    </label>
+    <label>
+        <input type="password" placeholder="Password">
+    </label>
+    <input type="button" value="login" Login>
+    <a href="#">Forgot Password?</a>
+    <a href="#" class="blue">Create Account</a>
+    <p>designed by mahdi</p>
+</form>
+
+
+</body>
+</html>
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#Css code:
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+body {
+    background: rgb(9, 9, 121);
+    background: linear-gradient(90deg, rgba(9, 9, 121, 1) 0%, rgba(0, 228, 255, 1) 100%, rgba(2, 0, 36, 1) 100%);
+}
+
+form {
+    width: 226px;
+    height: 299px;
+    background-color: #f6ecec;
+    position: relative;
+    left: 39%;
+    margin-top: 11%;
+    border-radius: 15px;
+    text-align: center;
+    color: #504e4e;
+    padding: 10px 5px;
+}
+
+span {
+    color: dodgerblue;
+}
+
+input[type=text], input[type=email], input[type=password] {
+    border: none;
+    background-color: #f6ecec;
+    border-bottom: 1px dodgerblue solid;
+    padding: 9px;
+    font-size: 11px;
+    opacity: 0.5;
+}
+
+input[type=button] {
+    display: block;
+    position: relative;
+    width: 157px;
+    left: 34px;
+    margin-top: 23px;
+    border: none;
+    background: rgb(9, 9, 121);
+    background: linear-gradient(90deg, rgba(9, 9, 121, 1) 0%, rgba(0, 228, 255, 1) 100%, rgba(2, 0, 36, 1) 100%);
+    color: white;
+}
+
+input[type=button]:hover {
+    background: rgb(9, 9, 121);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(0, 228, 255, 1) 100%, rgba(9, 9, 121, 1) 20%);
+}
+
+a {
+    text-align: center;
+    text-decoration: none;
+    font-size: 10px;
+    color: gray;
+    position: relative;
+    top: 40px;
+    display: block;
+    padding-top: 5px;
+}
+
+a.blue {
+    color: dodgerblue;
+}
+
+p {
+    position: relative;
+    top: 57px;
+    font-size: 10px;
+    color: gray;
+    opacity: 0.3;
+}
+
+input[type=password]:focus {
+    border-bottom: 3px blue solid;
+}
+
+input[type=text]:focus {
+    border-bottom: 3px blue solid;
+}
+
+input[type=email]:focus {
+    border-bottom: 3px blue solid;
+}
