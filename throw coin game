@@ -46,5 +46,5 @@ function tossCoin(e) {
         output = "computer win";
         score[1]++;
     }
-    message.innerHTML += output = "<br> player: " + score[0] + " computer: " + score[1];
+    message.innerHTML += "-" + output + "<br> player: " + score[0] + " computer: " + score[1];
 }
