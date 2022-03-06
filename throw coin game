@@ -1,0 +1,50 @@
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+html code:
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>throw coin</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+<div class="message">Select either Up or Down</div>
+<button type="button">Up</button>
+<button type="button">Down</button>
+
+</body>
+<script src="javascript/MyJavaScript.js"></script>
+</html>
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+javascript code:
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const coinArray = ["Up", "Down"];
+let score = [0, 0];
+const message = document.querySelector(".message");
+const buttons = document.querySelectorAll("button");
+console.log(buttons);
+for (let i = 0; i < buttons.length; i++) {
+    console.log(buttons[i]);
+    buttons[i].addEventListener("click", tossCoin);
+}
+
+function tossCoin(e) {
+    let playerGuess = e.target.innerText;
+    let computerToss = Math.floor(Math.random() * 2);
+    let computerGuess = coinArray[computerToss];
+    message.innerHTML = "computer selected: " + computerGuess;
+    let output;
+    if (playerGuess === computerGuess) {
+        output = "player win";
+        score[0]++;
+    } else {
+        output = "computer win";
+        score[1]++;
+    }
+    message.innerHTML += output = "<br> player: " + score[0] + " computer: " + score[1];
+}
