@@ -1,0 +1,106 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+html code:
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Count-Down Timer</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+<div>
+    <input type="date" id="endDate">
+    <div class="clock">
+        <span><span class="days">0</span>Days</span>
+        <span><span class="hours">0</span>Hours</span>
+        <span><span class="minutes">0</span>Minutes</span>
+        <span><span class="seconds">0</span>Seconds</span>
+    </div>
+</div>
+
+</body>
+<script src="javascript/MyJavaScript.js"></script>
+</html>
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+javascript code:
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+const endDate = document.getElementById("endDate");
+const clock = document.querySelector(".clock");
+let timeInterval;
+let timeStop = true;
+const saveValue = localStorage.getItem("countDown") || false;
+if (saveValue) {
+    startCock(saveValue);
+    let inputValue = new Date(saveValue);
+    endDate.value = inputValue;
+}
+
+endDate.addEventListener("change", function () {
+    const temp = new Date(endDate.value);
+    localStorage.setItem("countDown", temp);
+    clearInterval(timeInterval);
+    startCock(temp);
+    timeStop = true;
+})
+
+function startCock(d) {
+    function updateCounter() {
+        let tl = timeLeft(d);
+        if (tl.total <= 0) {
+            timeStop = false;
+        }
+        for (let pro in tl) {
+            let elem = clock.querySelector("." + pro);
+            if (elem) {
+                elem.innerHTML = tl[pro];
+            }
+        }
+    }
+
+    updateCounter()
+    if (timeStop) {
+        timeInterval = setInterval(updateCounter, 1000);
+    } else {
+        clearInterval(timeInterval);
+    }
+}
+
+function timeLeft(d) {
+    let currentDate = new Date();
+    let t = Date.parse(d) - Date.parse(currentDate);
+    let seconds = Math.floor((t / 1000) % 60);
+    let minutes = Math.floor(((t / 1000) / 60) % 60);
+    let hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+    let days = Math.floor(t / (1000 * 60 * 60 * 24));
+    return {
+        "total": t,
+        "days": days,
+        "hours": hours,
+        "minutes": minutes,
+        "seconds": seconds
+    }
+}
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+css code:
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+.clock {
+    background-color: skyblue;
+    width: 400px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.clock span {
+    padding: 10px;
+}
+
+input {
+    padding: 10px;
+    margin: 10px;
+    font-size: 2em;
+}
