@@ -1,0 +1,84 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+html code:
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Guess the Correct word</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+<div id="message"></div>
+<input type="text" class="hidden">
+<button type="button">Start</button>
+
+</body>
+<script src="javascript/MyJavaScript.js"></script>
+</html>
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+javascript code:
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+onst message = document.getElementById("message");
+const button = document.querySelector("button");
+const guess = document.querySelector(".hidden");
+const myArray = ["مهدی", "سجاد", "پرهام", "ایمان", "علی", "سارا", "سعید", "محمد", "جواد"]
+let scramble = "";
+let scrambled = "";
+let score = 0;
+
+let inplay = false;
+
+button.addEventListener("click", function () {
+    if (inplay === false) {
+        inplay = true;
+        button.innerHTML = "Guess";
+        guess.classList.toggle("hidden");
+        guess.value = "";
+        scramble = createWord();
+        scrambled = randomArray(scramble.split("")).join("");
+        message.innerHTML = scrambled;
+    } else {
+        let tempguess = guess.value;
+        score++;
+        if (tempguess === scramble) {
+            inplay = false;
+            message.innerHTML = "correct it was " + scramble + " " + "it took " + score + "guesses";
+            button.innerHTML = "Restart";
+            guess.classList.toggle("hidden");
+        } else {
+            message.innerHTML = "Wrong" + scrambled;
+
+
+        }
+    }
+
+});
+
+function createWord() {
+    let randomIndex = Math.floor(Math.random() * myArray.length);
+    let tempword = myArray[randomIndex];
+    let rand = randomArray(tempword.split(""));//baray ejad beham rikhtegi dar kalamat az split estefade mikonim
+    return tempword;
+}
+
+function randomArray(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        let temp = arr[i];
+        let j = Math.floor(Math.random() * (i + 1));
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    return arr;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+css code:
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+.hidden {
+    display: none;
+}
+
